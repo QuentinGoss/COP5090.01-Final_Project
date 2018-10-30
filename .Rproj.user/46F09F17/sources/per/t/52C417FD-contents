@@ -1,0 +1,87 @@
+library(jsonplot) # JSON read + write
+library(igraph) # Directed graph style 1
+library(statnet) # Directed graph style 2
+
+# Creates a graph from a `junctions.json` and a
+# `edges.json` file.
+#
+# @param string project.name <- name of the map project
+#  (i.e. "3choices")
+# @param int dg.style <- 1 = igraph
+#                        2 = statnet
+json_to_graph <- function(project.name,dg.style=1){
+  junctions.list
+  edges.list 
+}
+
+# Takes a symmetrical nested list and creates a matrix.
+# The names of dimension 1 are used as column names and
+# the names of dimension 2 are used as row names.
+#
+# @param somedata.list <- a nested list.
+# @return <- a named matrix of the input somedata.list
+sym_nested_list_to_matrix <- function(somedata.list){
+  # Gather data from our list
+  nrows <- length(somedata.list)
+  ncols <- length(somedata.list[[1]])
+  rnames <- names(somedata.list)
+  cnames <- names(somedata.list[[1]])
+  
+  # Create an empty matrix of lists
+  somedata.matrix <- matrix(
+    data=rep(list(),nrows*ncols),
+    nrow=nrows,
+    ncol=ncols,
+    byrow=FALSE,
+    dimnames=NULL
+  )
+  
+  # Add row and column names
+  rownames(somedata.matrix) <- rnames
+  colnames(somedata.matrix) <- cnames
+  
+  # Copy data one cell at a time
+  for (row.index in 1:nrows){
+    for (col.index in 1:ncols){
+      somedata.matrix[row.index,col.index] <- somedata.list[[row.index]][col.index]
+    }
+  }
+  
+  return(somedata.matrix)
+}
+
+# Creates an adjacency matrix by combining data from junctions.matrix and edges.matrix
+#
+# @param matrix jm <- junctions.matrix
+# @param matrix em <- edges.matrix
+# @return matrix am <- adjacency.matrix
+jmem2am <- function(jm,em){
+  # Get the size of the ajacentcy matrix
+  jm.amt <- length(names(jm[,1]))
+  
+  # Store the for the rows and columns
+  jm.names <- names(jm[,1])
+  
+  # Initialize an empty matrix
+  am <- matrix(
+    data=rep(0, jm.amt * jm.amt),
+    ncol=jm.amt,
+    nrow=jm.amt,
+    byrow=FALSE
+  )
+  
+  # Set row and column names
+  rownames(am) <- jm.names
+  colnames(am) <- jm.names
+  
+  # Fill the adjacency matrix
+  for (i in 1:nrow(em)){
+    from <- paste0(em[i,'from'])
+    to <- paste0(em[i,'to'])
+    row.index <- match(from,rownames(am))
+    col.index <- match(to,colnames(am))
+    am[row.index,col.index] <- 1
+  }
+  
+  return(am)
+}

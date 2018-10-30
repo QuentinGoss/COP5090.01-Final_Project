@@ -1,0 +1,6 @@
+"0","df <- data.frame("
+"0","  x = coords.x,"
+"0","  y = coords.y,"
+"0","  names = coords.names"
+"0",")"
+"0","df"

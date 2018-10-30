@@ -1,0 +1,9 @@
+"0","```r
+names(xynames) <- c('x','y','name')
+summary(xynames)
+```"
+"1","     Length Class  Mode     
+x    412    -none- numeric  
+y    412    -none- numeric  
+name 412    -none- character
+"

@@ -1,0 +1,24 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1540940072599.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "603678222",
+    "id" : "49023600",
+    "lastKnownWriteTime" : 1540941143,
+    "last_content_update" : 1540941143155,
+    "path" : "C:/flpoly/Fall 2018/Scientific Computing and Programming/Final_Project/notebooks/kmeansmethod.Rmd",
+    "project_path" : "notebooks/kmeansmethod.Rmd",
+    "properties" : {
+        "chunk_output_type" : "inline",
+        "cursorPosition" : "75,3",
+        "scrollLine" : "70",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1540003937886.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1822924980",
+    "id" : "52C417FD",
+    "lastKnownWriteTime" : 1540007760,
+    "last_content_update" : 1540007760751,
+    "path" : "~/Florida Polytechnic/Fall 2018/Scientific Computing and Programming/Final_Project/scripts/sumo_dg_viewer.R",
+    "project_path" : "scripts/sumo_dg_viewer.R",
+    "properties" : {
+        "cursorPosition" : "13,13",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

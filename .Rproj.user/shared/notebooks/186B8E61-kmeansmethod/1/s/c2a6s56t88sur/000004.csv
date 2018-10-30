@@ -1,0 +1,1 @@
+"0","points(coords.clusters$centers, col = 1:ncenters , pch = 8, cex = 2)"

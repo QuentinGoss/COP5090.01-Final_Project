@@ -1,0 +1,126 @@
+---
+title: "Plotting Junction XY Coordinates."
+author: 
+  name: 'Quentin Goss `quentingoss0323@floridapoly.edu`'
+  affiliation: "Florida Polytechnic University `COP5090.01`"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output: html_notebook
+---
+
+<head>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<a 
+  class="topleft"
+  href="./graphs.nb.html" 
+  title="Previous: Creating PNGs of the Direct Graphs.">
+    PREVIOUS
+</a>
+<a 
+  class="topright"
+  href="./xyplot.pngs.nb.html" 
+  title="Next: Plotting Junction XY Coordinates.">
+    NEXT
+</a>
+#Introduction
+On this page we will plot the junctions of a SUMO map using the `x` and `y` coordinates of the junctions. For the following examples we will be using the project `3choices` since it is small in size and simple in structure. Later, we will create an ambiguous, modular function using the methods described here which we will use to plot every project in the `jsons` directory. To start, we need the `junctions.matrix` of `3choices` which we can retrieve with the help of the `sumo_dg_viewer.R` script. 
+```{r message=FALSE}
+source(file="../scripts/sumo_dg_viewer.R")
+```
+
+We use the `json2matrices` method which returns both `junctions.matrix` and `edges.matrix`. We take the `junctions.matrix` list from the temporary variable `jmem` and then clear it from the workspace, since we no longer need it.
+```{r}
+# Get the junctions.matrix and edges.matrix into a temporary variable jmem
+jmem <- json2matrices('3choices') # @return list(junctions.matrix,edges.matrix)
+
+# junctions.matrix is at index 1
+junctions.matrix <- jmem[[1]]
+
+# We don't need the temporary variable anymore so clear it from the workspace.
+rm(jmem)
+
+print(junctions.matrix)
+```
+
+We begin to extract the coordinates of `juinctions.matrix`. The coordinates we want are in the column `true_center_coords`. First, we target the column `true_center_coords` in our matrix `junctions.matrix`. Currently our `coords` variable is type `list` and since the list is short, we also include a look into the contents of the list.
+```{r}
+coords <- junctions.matrix[,'true_center_coords']
+print(class(coords))
+print(coords)
+```
+
+Next we'll unlist `coords` and then take a peek at the structure of our data.
+```{r}
+unlist(
+  lapply(
+    coords,
+    '[[',
+    1
+  )
+)
+```
+
+Then, we clean the names from `coords.x`.
+```{r}
+coords.x <- unname(
+  unlist(
+    lapply(
+      coords,
+      '[[',
+      1
+    )
+  )
+)
+print(paste0(' Class: ',class(coords.x)))
+print(paste0('Length: ',length(coords.x)))
+print(coords.x)
+```
+
+Now that we have coordinates for `x` we find the coordinates for `y`.
+```{r}
+coords.y <- unname(
+  unlist(
+    lapply(
+      coords,
+      '[[',
+      2
+    )
+  )
+)
+print(paste0(' Class: ',class(coords.y)))
+print(paste0('Length: ',length(coords.y)))
+print(coords.y)
+```
+
+Lastly, we needs the names within it's own list.
+```{r}
+coords.names <- rownames(junctions.matrix)
+print(paste0(' Class: ',class(coords.names)))
+print(paste0('Length: ',length(coords.names)))
+print(coords.names)
+```
+
+Now that we have `x`, `y`, and some names we plot our points.
+```{r}
+plot(coords.x,coords.y)
+```
+
+We have a simple plot of the points at `(x,y)`. We also try out another plot with labeled points which we will create with the help of the `ggplot2` library.
+```{r message=FALSE}
+library(ggplot2)
+```
+
+To start, we make a `data.frame` from our plot data.
+```{r}
+df <- data.frame(
+  x = coords.x,
+  y = coords.y,
+  names = coords.names
+)
+df
+```
+
+```{r}
+ggplot(df,aes(x,y)) + geom_point() + geom_text(aes(label=names))
+```
+

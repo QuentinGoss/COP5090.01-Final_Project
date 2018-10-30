@@ -1,0 +1,3 @@
+"0","```r
+newone <- cbind(coords.x, coords.y)
+```"

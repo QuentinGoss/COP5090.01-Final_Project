@@ -1,0 +1,1 @@
+"0","plot(x = coords.matrix, col = coords.clusters$cluster)"

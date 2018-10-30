@@ -1,0 +1,6 @@
+"0","#png(filename='../../exports/bloopers/leopard.blooper.png', width = 640, height = 480, units='px')"
+"0","plot("
+"0","  x = coords.x,"
+"0","  y = coords.y,"
+"0","  col = coords.clusters$cluster"
+"0",")"

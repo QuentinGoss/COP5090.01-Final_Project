@@ -1,0 +1,6 @@
+"0","```r
+ggplot(data = )+
+  geom_point(aes(x = coords.x, y = coords.y, color = factor(coords.clusters$cluster))) + 
+  labs(title = \"monday\", subtitle = \"right after my class\", 
+       x = \"Coords x\", y = \"Coords y\")
+```"

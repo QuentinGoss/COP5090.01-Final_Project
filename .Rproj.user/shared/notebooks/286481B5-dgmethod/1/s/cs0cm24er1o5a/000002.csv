@@ -1,0 +1,8 @@
+"0","adjacency.network <- graph_from_adjacency_matrix("
+"0","  adjacency.matrix,"
+"0","  mode=""directed"""
+"0",")"
+"0","plot.igraph("
+"0","  adjacency.network,"
+"0","  edge.color=""black"""
+"0",")"

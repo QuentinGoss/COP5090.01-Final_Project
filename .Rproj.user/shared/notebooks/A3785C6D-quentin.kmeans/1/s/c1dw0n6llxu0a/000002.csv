@@ -1,0 +1,7 @@
+"0","coords.x <- unlist(xynames[1])"
+"0","coords.y <- unlist(xynames[2])"
+"0","coords.names <- unlist(xynames[3])"
+"0","plot("
+"0","  x = coords.x,"
+"0","  y = coords.y"
+"0",")"

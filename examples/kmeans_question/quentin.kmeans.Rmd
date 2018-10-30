@@ -1,0 +1,68 @@
+---
+title: "Quentin K-Means questions"
+output: html_notebook
+---
+
+We have an R object named `xynames`.
+```{r}
+load('xynames.RData')
+```
+
+Within the data structure `xynames` are three lists that contain all the data needed to create a plot.
+```{r}
+names(xynames) <- c('x','y','name')
+summary(xynames)
+```
+
+We can plot them abd see what the plot looks like.
+```{r}
+coords.x <- unlist(xynames[1])
+coords.y <- unlist(xynames[2])
+coords.names <- unlist(xynames[3])
+plot(
+  x = coords.x,
+  y = coords.y
+)
+```
+
+We want to try out the `kmeans` method in base R, so we create a data structure that `kmeans` accepts.
+```{r}
+coords.matrix <- rbind(
+  matrix(coords.x,ncol=2),
+  matrix(coords.y,ncol=2)
+)
+colnames(coords.matrix) <- c('x','y')
+rownames(coords.matrix) <- coords.names
+print(head(coords.matrix,n=10L))
+```
+
+And then we run them through the `kmeans` method.
+```{r}
+ncenters <- 7
+coords.clusters <- kmeans(
+  x = coords.matrix,
+  centers = ncenters,
+  iter.max = 50,
+  nstart = 27,
+  algorithm = 'Hartigan-Wong'
+)
+print(coords.clusters)
+```
+
+We can view our clusters with a plot.
+```{r}
+plot(x = coords.matrix, col = coords.clusters$cluster)
+points(coords.clusters$centers, col = 1:ncenters , pch = 8, cex = 2)
+```
+
+I can see that my junctions (points) are being clustered when I plot my points color coded to the clusters they belong with. 
+```{r}
+#png(filename='../../exports/bloopers/leopard.blooper.png', width = 640, height = 480, units='px')
+plot(
+  x = coords.x,
+  y = coords.y,
+  col = coords.clusters$cluster
+)
+points(coords.clusters$centers, col = 1:ncenters , pch = 8, cex = 2)
+```
+

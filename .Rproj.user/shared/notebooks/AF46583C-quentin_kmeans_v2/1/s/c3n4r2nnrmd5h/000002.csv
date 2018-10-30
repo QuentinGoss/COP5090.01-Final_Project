@@ -1,0 +1,4 @@
+"0","```r
+plot(x = newone, col = coords.clusters$cluster)
+points(coords.clusters$centers, col = 1:ncenters , pch = 8, cex = 2)
+```"
