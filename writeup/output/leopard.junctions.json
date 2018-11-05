@@ -1,0 +1,77 @@
+{
+	"cluster_1": {
+		"id": "cluster_1",
+		"true_center_coords": [-35.5821428571429,-29.1989285714286],
+		"normal_center_coords": [0.851857874692108,0.417287908964581]
+	},
+	"cluster_2": {
+		"id": "cluster_2",
+		"true_center_coords": [-282.085625,-135.64125],
+		"normal_center_coords": [0.665227307992557,0]
+	},
+	"cluster_3": {
+		"id": "cluster_3",
+		"true_center_coords": [-782.5796875,117.7078125],
+		"normal_center_coords": [0.286297608086727,0.993209271555632]
+	},
+	"cluster_4": {
+		"id": "cluster_4",
+		"true_center_coords": [-472.266666666667,34.7533333333333],
+		"normal_center_coords": [0.521239096251228,0.668001208765181]
+	},
+	"cluster_5": {
+		"id": "cluster_5",
+		"true_center_coords": [-1160.724375,19.7975],
+		"normal_center_coords": [0,0.609369563619435]
+	},
+	"cluster_6": {
+		"id": "cluster_6",
+		"true_center_coords": [112.351944444444,51.6861111111111],
+		"normal_center_coords": [0.963860440770568,0.73438310777884]
+	},
+	"cluster_7": {
+		"id": "cluster_7",
+		"true_center_coords": [160.085428571429,-69.0245714285714],
+		"normal_center_coords": [1,0.261158664431151]
+	},
+	"cluster_8": {
+		"id": "cluster_8",
+		"true_center_coords": [-348.125238095238,-34.7990476190476],
+		"normal_center_coords": [0.615227972042242,0.395333653026055]
+	},
+	"cluster_9": {
+		"id": "cluster_9",
+		"true_center_coords": [-57.2916216216216,112.462162162162],
+		"normal_center_coords": [0.835421383453341,0.972644646214342]
+	},
+	"cluster_10": {
+		"id": "cluster_10",
+		"true_center_coords": [-736.790571428571,-46.8608571428571],
+		"normal_center_coords": [0.320965064330326,0.348047505871729]
+	},
+	"cluster_11": {
+		"id": "cluster_11",
+		"true_center_coords": [-288.508076923077,119.44],
+		"normal_center_coords": [0.660364797201291,1]
+	},
+	"cluster_12": {
+		"id": "cluster_12",
+		"true_center_coords": [-1013.67136363636,23.8231818181818],
+		"normal_center_coords": [0.111335493547981,0.625151522576363]
+	},
+	"cluster_13": {
+		"id": "cluster_13",
+		"true_center_coords": [-900.7425,40.3325],
+		"normal_center_coords": [0.196835209957571,0.689873324675961]
+	},
+	"cluster_14": {
+		"id": "cluster_14",
+		"true_center_coords": [-193.590909090909,26.1059090909091],
+		"normal_center_coords": [0.732227655559485,0.634100542830604]
+	},
+	"cluster_15": {
+		"id": "cluster_15",
+		"true_center_coords": [-625.340303030303,80.4624242424242],
+		"normal_center_coords": [0.40534531960774,0.847195449459434]
+	}
+}

@@ -1,0 +1,1 @@
+"0","coords.clusters <- plot.kmeans(project.name2cm('leopard'),k=7,return.cc=T)"

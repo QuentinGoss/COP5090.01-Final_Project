@@ -1,0 +1,1 @@
+"0","legend('bottomleft', pch = rep(1,k), legend = 1:k, col = unique(1:k))"

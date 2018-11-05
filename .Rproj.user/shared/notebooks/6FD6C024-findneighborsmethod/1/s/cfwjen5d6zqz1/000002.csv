@@ -1,0 +1,2 @@
+"0","k <- nrow(coords.clusters$centers)"
+"0","plot(coords.clusters$centers,col=1:k)"

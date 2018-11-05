@@ -1,0 +1,8 @@
+"0","```r
+# create row names
+cl_rownames <- paste0(rep(\"cluster_\", nn), 1:nn)
+cl_rownames
+```"
+"1","[1] \"cluster_1\" \"cluster_2\" \"cluster_3\" \"cluster_4\" \"cluster_5\" \"cluster_6\"
+[7] \"cluster_7\"
+"

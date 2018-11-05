@@ -1,0 +1,6 @@
+"0","```r
+# dataframe with row names
+df_2 <- data.frame(items = cl_size, 
+           qclass = rep(NA_character_, nn), qmode = character(nn))
+row.names(df_2) <- cl_rownames
+```"

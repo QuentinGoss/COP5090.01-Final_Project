@@ -1,0 +1,2 @@
+"0","ncenters <- 6"
+"0","coords.clusters <- kmeans(x = coords.matrix, centers = ncenters, iter.max = 50, nstart = 27, algorithm = 'Hartigan-Wong')"

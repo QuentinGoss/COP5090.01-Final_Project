@@ -1,0 +1,42 @@
+---
+title: "Dataframe Question"
+author: 
+  name: 'Quentin Goss `quentingoss0323@floridapoly.edu`'
+  affiliation: "Florida Polytechnic University `COP5090.01`"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output: html_notebook
+---
+
+I have the following data.
+```{r}
+load('coords.clusters.RData')
+```
+
+It is the result of using the `kmeans` function. We can view the data but right now I only care about one part, `$size`, which is the information about how many nodes are in a cluster.  Cluster 1 has 46 nodes, cluster 2 has 70 items and so on...
+```{r}
+coords.clusters$size
+```
+
+I want to preload this as a datastructure into memory with `NA` values that I can later replace with `character` values. I can determine the length of `$size` with the length function, so I know how many rows that I want in this data structure.
+```{r}
+length(coords.clusters$size)
+```
+
+When I use the `summary` function on my `coords.clusters` dataframe I see this:
+```{r}
+summary(coords.clusters)
+```
+
+To better explain what I want, here is a summary of how I'd like my data structure to look like: 
+```
+          Length Class  Mode
+cluster_1   42   -none- character
+cluster_2   70   -none- character
+cluster_3   73   -none- character
+cluster_4   81   -none- character
+cluster_5   45   -none- character
+cluster_6   42   -none- character
+cluster_7   55   -none- character
+```
+
+And so, my question is **How do I create a data frame where** `nrow = length(coords.clusters$size)` **and** `ncol = coords.clusters$size[i]` **and** `rownames(mydf) <- cluster_i` **and every value is set to** `NA` **?**

@@ -1,0 +1,383 @@
+---
+title: "Find connections between clusters."
+author: 
+  name: 'Quentin Goss `quentingoss0323@floridapoly.edu`'
+  affiliation: "Florida Polytechnic University `COP5090.01`"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output: html_notebook
+---
+
+<head>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<a 
+  class="topleft"
+  href="./kmeansplots.nb.html" 
+  title="Previous: Creating PNGs of all k-means clustered projects.">
+    PREVIOUS
+</a>
+
+# Introduction
+On this page we will be finding connections between clustered regions. For the examples on this page we will be using the project `leopard` since the amount of points is visually fitting and sized nicely for the base R plots. We are going to need a coordinate matrix of the `leopard` project which we will get with the help of the script `clusterSUMO.project.R`.
+```{r message=FALSE}
+source(file='../scripts/clusterSUMO.project.R')
+```
+
+We start by performing k-means clustering on our `leopard` project. We use the `plot.kmeans` method from our script `clusterSUMO.project.R` to visualize our k-means clustered set of points and also to retrieve our cluster data which we put into the R object `coords.clusters`.
+```{r message=FALSE}
+coords.clusters <- plot.kmeans(project.name2cm('leopard'),k=7,return.cc=T)
+```
+
+We take a look at our `coords.clusters` dataframe.
+```{r}
+print(coords.clusters)
+```
+
+In our `coords.clusters` data frame, we are given the location of the cluster means.
+```{r}
+print(coords.clusters$centers)
+```
+
+We can plot the centers now too.
+```{r}
+k <- nrow(coords.clusters$centers)
+plot(coords.clusters$centers,col=1:k)
+legend(
+  'bottomleft',
+  pch = rep(1,k),
+  legend = 1:k,
+  col = unique(1:k)
+)
+```
+
+Now we want to know how each cluster connects to one another. To do this, we'll need our junction and edge data which we can retrieve with the help of the script `sumo_dg_viewer.R` which is loaded along with `clusterSUMO.project.R`.
+```{r message=FALSE}
+jmem <- json2matrices('leopard')
+junctions.matrix <- jmem[[1]]
+edges.matrix <- jmem[[2]]
+
+# Clean up temporary object
+rm(jmem)
+
+print(head(junctions.matrix,n=5L))
+print(head(edges.matrix,n=5L))
+```
+
+To view the simplified network, we initialize an empty adjacency matrix to store our connection data in.
+```{r}
+adjacency.matrix <- matrix(
+  data = rep(0,k * k),
+  nrow = k,
+  ncol = k
+)
+rownames(adjacency.matrix) <- paste0('cluster_',1:k)
+colnames(adjacency.matrix) <- paste0('cluster_',1:k)
+print(adjacency.matrix)
+```
+
+Then we go to each of our edges one by one and note which cluster they begin in and which cluster they end in. I.e. if we have a node `node.from.1` which is in cluster 3 and `node.to.5` we'll increment the value of the adjency matrix at `row = cluster_3` and `column = cluster_5`.
+```{r}
+for (i in 1:nrow(edges.matrix)){
+  # From
+  node.from <- edges.matrix[[i,'from']]
+  node.from.cluster <- coords.clusters$cluster[node.from]
+    
+  # To
+  node.to <- edges.matrix[[i,'to']]
+  node.to.cluster <- coords.clusters$cluster[node.to]
+  
+  # Update adjacency table
+  if (node.to.cluster != node.from.cluster){
+    adjacency.matrix[node.from.cluster,node.to.cluster] <- adjacency.matrix[node.from.cluster,node.to.cluster] + 1
+  }
+}
+
+print(adjacency.matrix)
+```
+
+Now we view the directed graph.
+```{r}
+adjacency.network <- network(
+  adjacency.matrix,
+  matrix.type="adjacency",
+  directed=FALSE,
+  cignore.eval=FALSE,
+  names.eval="value"
+)
+gplot(
+  adjacency.network,
+  gmode="digraph",
+  label=adjacency.network%v%'vertex.names',
+  arrowhead.cex=1
+)
+```
+
+# Writing the data to JSON files
+Now that we have a simplified map, we must convert the R information back into JSON format. We must have three files, one that contains node information, one that contains edge information, and one that lists which nodes are in which clusters. We will need the library `jsonlite`
+```{r}
+library('jsonlite')
+```
+
+## clusters.json
+We'll write `clusters.json`. We begin by preparing the data to be written.
+```{r}
+# Amount of clusters
+nn <- length(coords.clusters$size)
+
+# Cluster names
+cl.names <- paste0(rep("cluster_", nn), 1:nn)
+
+# Size of each cluster (The amount of junctions in each cluster)
+cl.size <- coords.clusters$size
+
+# Names of all of the nodes within each cluster.
+cl.max <- max(cl.size) 
+cl.nodes <- matrix(data = NA_character_, nrow = nn, ncol = cl.max)
+
+# Populate the list of nodes
+counter <- rep(1L,nn)
+for (i in 1:length(coords.clusters$cluster)){
+  cl.index <- coords.clusters$cluster[i]
+  cl.nodes[cl.index,counter[cl.index]] <- names(cl.index)
+  counter[cl.index] <- counter[cl.index] + 1
+}
+rm(counter)
+```
+
+Then we write the file.
+```{r}
+filepath <- '../output/clusters.json'
+
+# Start file
+write('{',file=filepath)
+
+# Add objects
+for (i in 1:nn){
+  # Begin cluster object
+  line <- paste0('\t"',cl.names[i],'": {')
+  write(line, file=filepath, append=T)
+  
+  # name
+  line <- paste0('\t\t"id": "',cl.names[i],'",')
+  write(line, file=filepath, append=T)
+  
+  # size
+  line <- paste0('\t\t"size": ',as.integer(cl.size[i]),',')
+  write(line, file=filepath, append=T)
+  
+  # nodes
+  line <- paste0('\t\t"nodes": [')
+  for (j in 1:cl.max){
+    if(!is.na(cl.nodes[i,j])){
+      if (!(j == 1)) line <- paste0(line,',')
+      line <- paste0(line,'"',cl.nodes[i,j],'"')
+    } else {
+      break
+    }
+  }
+  line <- paste0(line,']')
+  write(line, file=filepath, append=T)
+  
+  # End cluster object
+  line <- paste0('\t}')
+  if (!(i == nn)) line <- paste0(line,',')
+  write(line, file=filepath, append=T)
+}
+
+# End file
+write('}', file=filepath, append=T)
+```
+
+And we'll try to read in our JSON file now to check it's correctness.
+```{r}
+clusters.json <- fromJSON(filepath)
+summary(clusters.json)
+```
+We get no errors so we assume that everything went well.
+
+##Junctions.json
+Next we create the `junctions.json` file where we will store our node data. First we get the data in the proper format.
+```{r}
+jct.names <- cl.names
+print(jct.names)
+
+jct.coords.true <- coords.clusters$centers
+print(jct.coords.true)
+
+jct.coords.norm <- norm_coords(
+  jct.coords.true,
+  xmin = 0,
+  xmax = 1,
+  ymin = 0,
+  ymax = 1
+)
+print(jct.coords.norm)
+# We also need to normalize the data.
+```
+
+Then we write the file.
+```{r}
+filepath <- '../output/junctions.json'
+
+# Start file
+write('{', file=filepath)
+
+# Add object
+for (i in 1:nn){
+  # Begin junction object
+  line <- paste0('\t"',jct.names[i],'": {')
+  write(line, file=filepath, append=T)
+  
+  # id
+  line <- paste0('\t\t"id": "',jct.names[i],'",')
+  write(line, file=filepath, append=T)
+  
+  # true_center_coords
+  line <- paste0('\t\t"true_center_coords": [', jct.coords.true[i,'x'],',',jct.coords.true[i,'y'],'],')
+  write(line, file=filepath, append=T)
+  
+  # normal_center_coords
+  line <- paste0('\t\t"normal_center_coords": [', jct.coords.norm[i,'x'],',',jct.coords.norm[i,'y'],']')
+  write(line, file=filepath, append=T)
+  
+  # End cluster object
+  line <- paste0('\t}')
+  if (!(i == nn)) line <- paste0(line,',')
+  write(line, file=filepath, append=T)
+}
+
+# End file
+write('}', file=filepath, append=T)
+```
+
+And we will test the integrity of the data by loading the newly written file.
+```{r}
+junctions.json <- fromJSON(filepath)
+summary(junctions.json)
+```
+
+##edges.json
+Lastly we create the `edges.json`. We prepare the data to be written.
+
+```{r}
+# Get number of unique connections between nodes
+nconn <- sum(adjacency.matrix != 0)
+
+# Names
+edges.names <- rownames(adjacency.matrix)
+
+# Initialize variables
+edges.id <- rep(NA_character_,nconn)
+edges.from <- rep(NA_character_,nconn)
+edges.to <- rep(NA_character_,nconn)
+edges.weight <- rep(NA_integer_,nconn)
+
+# True coords
+edges.coords.true.from <- matrix(data=rep(NA_integer_,2*nconn),nrow=nconn,ncol=2)
+colnames(edges.coords.true.from) <- c('x','y')
+edges.coords.true.to <- matrix(data=rep(NA_integer_,2*nconn),nrow=nconn,ncol=2)
+colnames(edges.coords.true.to) <- c('x','y')
+
+# Normal coords
+edges.coords.norm.from <- matrix(data=rep(NA_integer_,2*nconn),nrow=nconn,ncol=2)
+colnames(edges.coords.norm.from) <- c('x','y')
+edges.coords.norm.to <- matrix(data=rep(NA_integer_,2*nconn),nrow=nconn,ncol=2)
+colnames(edges.coords.norm.to) <- c('x','y')
+
+# Populate our varaibles
+counter <- 1
+for (index.from in 1:nrow(adjacency.matrix)){
+  for (index.to in 1:ncol(adjacency.matrix)){
+    if (adjacency.matrix[index.from,index.to] != 0){
+      # From
+      edges.from[counter] <- edges.names[index.from]
+      
+      # to
+      edges.to[counter] <- edges.names[index.to]
+      
+      # id
+      edges.id[counter] <- paste0(edges.from[counter],'_to_',edges.to[counter])
+      
+      # Weight
+      edges.weight[counter] <- as.integer(adjacency.matrix[index.from,index.to])
+      
+      # True Coordinates
+      edges.coords.true.from[counter,'x'] <- coords.clusters$centers[index.from,'x']
+      edges.coords.true.from[counter,'y'] <- coords.clusters$centers[index.from,'y']
+      edges.coords.true.to[counter,'x'] <- coords.clusters$centers[index.to,'x']
+      edges.coords.true.to[counter,'y'] <- coords.clusters$centers[index.to,'y']
+      
+      # Normal Coordinates
+      edges.coords.norm.from[counter,'x'] <- jct.coords.norm[index.from,'x']
+      edges.coords.norm.from[counter,'y'] <- jct.coords.norm[index.from,'y']
+      edges.coords.norm.to[counter,'x'] <- jct.coords.norm[index.to,'x']
+      edges.coords.norm.to[counter,'y'] <- jct.coords.norm[index.to,'y']
+      
+      # Increment counter
+      counter <- counter + 1
+    }
+  }
+}
+```
+
+Then we can create our `edges.json` file.
+```{r}
+filepath <- '../output/edges.json'
+
+# Start file
+write('{', file=filepath)
+
+# Add object
+for (i in 1:nconn){
+  # Begin junction object
+  line <- paste0('\t"',edges.id[i],'": {')
+  write(line, file=filepath, append=T)
+  
+  # id
+  line <- paste0('\t\t"id": "',edges.id[i],'",')
+  write(line, file=filepath, append=T)
+  
+  # from
+  line <- paste0('\t\t"from": "',edges.from[i],'",')
+  write(line, file=filepath, append=T)
+  
+  # to
+  line <- paste0('\t\t"to": "',edges.to[i],'",')
+  write(line, file=filepath, append=T)
+  
+  # weight
+  line <- paste0('\t\t"weight": ',edges.weight[i],',')
+  write(line, file=filepath, append=T)
+  
+  # true_center_coords
+  line <- paste0(
+    '\t\t"true_center_coords": [[',
+    edges.coords.true.from[i,'x'],',',edges.coords.true.from[i,'y'],'],[',
+    edges.coords.true.to[i,'x'],',',edges.coords.true.to[i,'y'],']]',','
+  )
+  write(line, file=filepath, append=T)
+  
+  # normal_center_coords
+  line <- paste0(
+    '\t\t"normal_center_coords": [[',
+    edges.coords.norm.from[i,'x'],',',edges.coords.norm.from[i,'y'],'],[',
+    edges.coords.norm.to[i,'x'],',',edges.coords.norm.to[i,'y'],']]'
+  )
+  write(line, file=filepath, append=T)
+  
+  # End cluster object
+  line <- paste0('\t}')
+  if (!(i == nconn)) line <- paste0(line,',')
+  write(line, file=filepath, append=T)
+}
+
+# End file
+write('}', file=filepath, append=T)
+```
+
+We verify the integrity of the file by importing it.
+```{r}
+edges.json <- fromJSON(filepath)
+summary(edges.json)
+```
+

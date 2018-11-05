@@ -1,0 +1,5 @@
+"0","# using items, qclass, qmode to avoid confusion "
+"0","# with lenght, class, and mode functions"
+"0","df_1 <- data.frame(cluster = cl_number, items = cl_size, "
+"0","           qclass = rep(NA_character_, nn), qmode = character(nn))"
+"0","df_1"

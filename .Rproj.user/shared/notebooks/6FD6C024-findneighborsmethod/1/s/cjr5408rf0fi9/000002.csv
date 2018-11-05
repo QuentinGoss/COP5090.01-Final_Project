@@ -1,0 +1,7 @@
+"0","filepath <- '../output/leopard/clusters.json'"
+"0","# Start file"
+"0","write('{',file=filepath)"
+"2","cannot open file '../output/leopard/clusters.json': No such file or directory"
+"2","Error in file(file, ifelse(append, ""a"", ""w"")) : 
+  cannot open the connection
+"

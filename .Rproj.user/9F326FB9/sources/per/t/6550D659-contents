@@ -1,0 +1,309 @@
+---
+title: "Simplifying a SUMO map using kmeans clustering."
+author:
+  affiliation: Florida Polytechnic University `COP5090.01`
+  name: Quentin Goss `quentingoss0323@floridapoly.edu`
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  html_notebook: default
+  pdf_document: default
+---
+# Introduction
+The end goal of this project is to create an R script which will simplify a graph consisting of nodes and edges. The nodes are placed into clusters using the base K-means clustering method in R `kmeans`. A new simpler graph is created from the centers of each cluster. This document records the most important data wrangling and data combination steps involved in the automation of graph simplification.
+
+# Background
+The graphs that this script simplifies are derived from road map networks (RMN) used with the vehicular traffic simulation software SUMO (**S**imulation of **U**rban **Mo**bility). The SUMO RMN data we input into the script is not raw SUMO RMN data but cleaned node and edge data stored in JSON (**J**ava**s**cript **O**bject **N**otation) format. Figure 1 is the SUMO RMN of the project `leopard` that we use to demonstrate process of the script. The project `leopard` consists of many roads, which we refer to as edges and intersections where roads connect which we refer to as junctions.
+
+<center>
+![leopard.gif](../figures/leopard.gif)
+**Figure 1 -** The SUMO project `leopard`.
+</center>
+
+The data for each SUMO RMN such as `leopard` is stored in two (2) `.json` files. `junctions.json` which has intersection data, these are the vertices of the graph or nodes. Second is `edges.json` which has road data, these are the edges of the graph.
+
+```
+"gneJ10": {
+		 "true_center_coords": [85.58,106.58],
+		 "normal_center_coords": [0.8933573510362693,0.7615924550800834]
+},
+```
+<center>**Figure 2 -** A sample JSON object from `junctions.json`.</center>
+```
+"gneJ3_to_gneJ2": {
+		"true_coords": [[108.42,74.06],[73.94,55.94]],
+		"normal_coords": [[0.9087664615716753,0.673459985365457],[0.885504371761658,0.6243529634949456]],
+		"from": "gneJ3",
+		"to": "gneJ2"
+},
+```
+<center>**Figure 3-** A sample JSON object from `edges.json`.</center>
+
+# Compiling directed graphs.
+We create the directed graph with the help of the `statnet` library. The data wrangling is wordy and ommitted for brevity.
+```{r message=FALSE, warning=TRUE}
+library(statnet)
+```
+```{r}
+adjacency.network2 <- network(adjacency.matrix, matrix.type="adjacency", directed=FALSE, cignore.eval=FALSE, names.eval="value")
+
+# We ommited the gplot method fro brevity. This is the code to create the plot but,
+# for demonstration we include a PNG with a better resolution instead.
+#gplot(adjacency.network2, gmode="digraph", label=adjacency.network2%v%'vertex.names', arrowhead.cex=1)
+```
+<center>
+![leopard.dg.png](../exports/directed_graphs/leopard.dg.png)
+**Figure 4 -** The directed graph for project `leopard`.
+</center>
+
+# Clustering with kmeans
+In the previous sections we sucessfully read in the SUMO RMN data of project `leopard` which is in JSON format. In this section we perform k-means clustering on project `leopard`.We will use the script `SUMO.project2plot.R` to retrieve the `true_center_coords` `x` and `y` coordinates and junction names from `junctions.json` in project `leopard`. We begin by importing the script `SUMO.project2plot.R`, which contains wordy data wrangling methods.
+```{r message=FALSE}
+source(file='../scripts/SUMO.project2plot.R')
+```
+Before we can perform k-means clustering on our data we must structure the data to work with the built in R function `kmeans`. To start, we retrieve the `x`, `y` and `names` of our junctions by extracting the data from the `.json` file for the project `leopard` in the `jsons` directory.
+```{r message=FALSE}
+# Get a junctions.matrix from the json files for project `leopard`
+junctions.matrix <- project.name2jm('leopard')
+
+# Extract the data we want from junction.data at column 'True Coords' (default)
+xynames <- jm2xynames(junctions.matrix)
+
+# Summarize our object `xynames`
+print(summary(xynames))
+
+# Unlist and give x, y, and names their own vectors.
+coords.x <- unlist(xynames[1])
+coords.y <- unlist(xynames[2])
+coords.names <- unlist(xynames[3])
+
+# Clean up
+rm(junctions.matrix,xynames)
+```
+Next, we combine the coordinate data into a format readable by the `kmeans` function.
+```{r}
+coords.matrix <- cbind(coords.x,coords.y)
+colnames(coords.matrix) <- c('x','y')
+rownames(coords.matrix) <- coords.names
+print(head(coords.matrix,n=5L))
+```
+Then we use the built in `kmeans` function to find some clusters. We ommit the output of the `kmeans` function here since it is very long.
+```{r}
+ncenters <- 6
+coords.clusters <- kmeans(x = coords.matrix, centers = ncenters, iter.max = 50, nstart = 27, algorithm = 'Hartigan-Wong')
+```
+Finally, we view the plot of our `kmeans` clustered junction data.
+```{r}
+plot(x = coords.matrix, col = coords.clusters$cluster)
+points(coords.clusters$centers, col = 1:ncenters , pch = 8, cex = 2)
+```
+# Finding neighbors
+In this section we will be finding connections between clustered regions. For the examples on this page we will be using the project `leopard` since the amount of points is visually fitting and sized nicely for the base R plots. We are going to need a coordinate matrix of the `leopard` project which we will get with the help of the script `clusterSUMO.project.R`.
+```{r message=FALSE}
+source(file='../scripts/clusterSUMO.project.R')
+```
+We start by performing k-means clustering on our `leopard` project. We use the `plot.kmeans` method from our script `clusterSUMO.project.R` to visualize our k-means clustered set of points and also to retrieve our cluster data which we put into the R object `coords.clusters`.
+```{r message=FALSE}
+coords.clusters <- plot.kmeans(project.name2cm('leopard'),k=7,return.cc=T)
+```
+We take a look at our `coords.clusters` dataframe.
+```{r}
+print(head(coords.clusters$cluster))
+print(coords.clusters$centers)
+print(coords.clusters$totss)
+print(coords.clusters$withinss)
+print(coords.clusters$betweenss)
+print(coords.clusters$size)
+print(coords.clusters$iter)
+print(coords.clusters$ifault)
+```
+In our `coords.clusters` data frame, we are given the location of the cluster means.
+```{r}
+print(coords.clusters$centers)
+```
+We can plot the centers now too.
+```{r}
+k <- nrow(coords.clusters$centers)
+plot(coords.clusters$centers,col=1:k)
+legend('bottomleft', pch = rep(1,k), legend = 1:k, col = unique(1:k))
+```
+Now we want to know how each cluster connects to one another. To do this, we'll need our junction and edge data which we can retrieve with the help of the script `sumo_dg_viewer.R` which is loaded along with `clusterSUMO.project.R`.
+```{r message=FALSE}
+jmem <- json2matrices('leopard')
+junctions.matrix <- jmem[[1]]
+edges.matrix <- jmem[[2]]
+rm(jmem) # Clean up temporary object
+
+print(head(junctions.matrix,n=5L))
+print(head(edges.matrix,n=5L))
+```
+To view the simplified network, we initialize an empty adjacency matrix to store our connection data in.
+```{r}
+adjacency.matrix <- matrix(data = rep(0,k * k),nrow = k,ncol = k)
+rownames(adjacency.matrix) <- paste0('cluster_',1:k)
+colnames(adjacency.matrix) <- paste0('cluster_',1:k)
+#print(adjacency.matrix) # Ommitted for brevity
+```
+Then we go to each of our edges one by one and note which cluster they begin in and which cluster they end in. I.e. if we have a node `node.from.1` which is in cluster 3 and `node.to.5` we'll increment the value of the adjency matrix at `row = cluster_3` and `column = cluster_5`.
+```{r}
+for (i in 1:nrow(edges.matrix)){
+  # From
+  node.from <- edges.matrix[[i,'from']]
+  node.from.cluster <- coords.clusters$cluster[node.from]
+    
+  # To
+  node.to <- edges.matrix[[i,'to']]
+  node.to.cluster <- coords.clusters$cluster[node.to]
+  
+  # Update adjacency table
+  if (node.to.cluster != node.from.cluster){
+    adjacency.matrix[node.from.cluster,node.to.cluster] <- adjacency.matrix[node.from.cluster,node.to.cluster] + 1
+  }
+}
+
+print(adjacency.matrix)
+```
+Now we view the directed graph.
+```{r}
+adjacency.network <- network(adjacency.matrix, matrix.type="adjacency", directed=FALSE, cignore.eval=FALSE, names.eval="value")
+gplot(adjacency.network, gmode="digraph", label=adjacency.network%v%'vertex.names', arrowhead.cex=1)
+```
+# Writing the data to JSON files
+Now that we have a simplified map, we must convert the R information back into JSON format. We must have three files, one that contains node information, one that contains edge information, and one that lists which nodes are in which clusters. We will need the library `jsonlite`
+```{r}
+library('jsonlite')
+```
+## clusters.json
+We'll write `clusters.json`. We begin by preparing the data to be written.
+```{r}
+# Amount of clusters
+nn <- length(coords.clusters$size)
+
+# Cluster names
+cl.names <- paste0(rep("cluster_", nn), 1:nn)
+
+# Size of each cluster (The amount of junctions in each cluster)
+cl.size <- coords.clusters$size
+
+# Names of all of the nodes within each cluster.
+cl.max <- max(cl.size) 
+cl.nodes <- matrix(data = NA_character_, nrow = nn, ncol = cl.max)
+
+# Populate the list of nodes
+counter <- rep(1L,nn)
+for (i in 1:length(coords.clusters$cluster)){
+  cl.index <- coords.clusters$cluster[i]
+  cl.nodes[cl.index,counter[cl.index]] <- names(cl.index)
+  counter[cl.index] <- counter[cl.index] + 1
+}
+rm(counter)
+```
+Then we write the file. The code is ommited for brevity. And we'll try to read in our JSON file now to check it's correctness.
+```{r}
+clusters.json <- fromJSON(filepath)
+head(summary(clusters.json),n=3L)
+```
+##Junctions.json
+Next we create the `junctions.json` file where we will store our node data. First we get the data in the proper format.
+```{r}
+jct.names <- cl.names
+print(jct.names)
+
+jct.coords.true <- coords.clusters$centers
+print(jct.coords.true)
+
+jct.coords.norm <- norm_coords(jct.coords.true, xmin = 0, xmax = 1, ymin = 0, ymax = 1)
+print(jct.coords.norm)
+# We also need to normalize the data.
+```
+Then we write the file. The code is ommitted for brevity. And we will test the integrity of the data by loading the newly written file.
+```{r}
+junctions.json <- fromJSON(filepath)
+head(summary(junctions.json),n=3L)
+```
+##edges.json
+Lastly we create the `edges.json`. We prepare the data to be written.
+```{r}
+# Get number of unique connections between nodes
+nconn <- sum(adjacency.matrix != 0)
+
+# Names
+edges.names <- rownames(adjacency.matrix)
+
+# Initialize variables
+edges.id <- rep(NA_character_,nconn)
+edges.from <- rep(NA_character_,nconn)
+edges.to <- rep(NA_character_,nconn)
+edges.weight <- rep(NA_integer_,nconn)
+
+# True coords
+edges.coords.true.from <- matrix(data=rep(NA_integer_,2*nconn),nrow=nconn,ncol=2)
+colnames(edges.coords.true.from) <- c('x','y')
+edges.coords.true.to <- matrix(data=rep(NA_integer_,2*nconn),nrow=nconn,ncol=2)
+colnames(edges.coords.true.to) <- c('x','y')
+
+# Normal coords
+edges.coords.norm.from <- matrix(data=rep(NA_integer_,2*nconn),nrow=nconn,ncol=2)
+colnames(edges.coords.norm.from) <- c('x','y')
+edges.coords.norm.to <- matrix(data=rep(NA_integer_,2*nconn),nrow=nconn,ncol=2)
+colnames(edges.coords.norm.to) <- c('x','y')
+
+# Populate our varaibles
+counter <- 1
+for (index.from in 1:nrow(adjacency.matrix)){
+  for (index.to in 1:ncol(adjacency.matrix)){
+    if (adjacency.matrix[index.from,index.to] != 0){
+      # From
+      edges.from[counter] <- edges.names[index.from]
+      
+      # to
+      edges.to[counter] <- edges.names[index.to]
+      
+      # id
+      edges.id[counter] <- paste0(edges.from[counter],'_to_',edges.to[counter])
+      
+      # Weight
+      edges.weight[counter] <- as.integer(adjacency.matrix[index.from,index.to])
+      
+      # True Coordinates
+      edges.coords.true.from[counter,'x'] <- coords.clusters$centers[index.from,'x']
+      edges.coords.true.from[counter,'y'] <- coords.clusters$centers[index.from,'y']
+      edges.coords.true.to[counter,'x'] <- coords.clusters$centers[index.to,'x']
+      edges.coords.true.to[counter,'y'] <- coords.clusters$centers[index.to,'y']
+      
+      # Normal Coordinates
+      edges.coords.norm.from[counter,'x'] <- jct.coords.norm[index.from,'x']
+      edges.coords.norm.from[counter,'y'] <- jct.coords.norm[index.from,'y']
+      edges.coords.norm.to[counter,'x'] <- jct.coords.norm[index.to,'x']
+      edges.coords.norm.to[counter,'y'] <- jct.coords.norm[index.to,'y']
+      
+      # Increment counter
+      counter <- counter + 1
+    }
+  }
+}
+```
+Then we can create our `edges.json` file. The code is ommited for brevity. We verify the integrity of the file by importing it.
+```{r}
+edges.json <- fromJSON(filepath)
+head(summary(edges.json),n=3L)
+```
+
+# Final Script
+At last, we consolidate all of our work into a single script which performs the entire simplification process from start to finish.
+```{r message=FALSE}
+source(file='../scripts/SUMO.kmeans.simplify.R')
+```
+```{r}
+SUMO.kmeans.simplify(
+  project.name = 'leopard',
+  jsons.dir = '../jsons/',
+  output.dir = './output/',
+  plot.width = 640,
+  plot.height = 480,
+  plot.legend.pos = 'bottomleft',
+  kmeans.k = 15,
+  kmeans.iter.max = 10,
+  kmeans.nstart = 1
+)
+```
+

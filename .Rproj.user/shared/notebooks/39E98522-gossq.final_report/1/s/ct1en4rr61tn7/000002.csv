@@ -1,0 +1,4 @@
+"0","adjacency.network2 <- network(adjacency.matrix, matrix.type=""adjacency"", directed=FALSE, cignore.eval=FALSE, names.eval=""value"")"
+"0","# We ommited the gplot method fro brevity. This is the code to create the plot but,"
+"0","# for demonstration we include a PNG with a better resolution instead."
+"0","#gplot(adjacency.network2, gmode=""digraph"", label=adjacency.network2%v%'vertex.names', arrowhead.cex=1)"

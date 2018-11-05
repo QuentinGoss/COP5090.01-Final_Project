@@ -16,6 +16,12 @@ output: html_notebook
   title="Previous: Creating PNGs using junctions as points">
     PREVIOUS
 </a>
+<a 
+  class="topright"
+  href="./kmeansplots.nb.html" 
+  title="Next: Creating PNGs of all k-means clustered projects.">
+    NEXT
+</a>
 
 #Introduction
 On this page we will perform k-means clustering on a SUMO map by using the junctions as points with `x` and `y` coordinates. For the following examples we will project `leopard` which has many points and when plotted, none of the points overlap any other points. Additionally, the project `leopard` was created using the SUMO tool NETEDIT and as such, the names of the junctions are short (i.e. `gneJ115`) whereas in a project important from OpenSteetMaps such as `Davenport`, the names of the junctions may be very long. A preview of the `leopard` junctions plotted by their `x` and `y` coordinates is shown in Figure 1.
@@ -58,7 +64,7 @@ print(head(coords.matrix,n=10L))
 
 Then we use the built in `kmeans` function to find some clusters.
 ```{r}
-ncenters <- 3
+ncenters <- 6
 coords.clusters <- kmeans(
   x = coords.matrix,
   centers = ncenters,

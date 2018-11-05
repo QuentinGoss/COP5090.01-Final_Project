@@ -1,0 +1,2 @@
+"0","png(file='../exports/kmeans_ks/leopard.kmeans.ks.png',width=640,height=480,units='px')"
+"0","plot.kmeans(project.name2cm('leopard'),k=7)"

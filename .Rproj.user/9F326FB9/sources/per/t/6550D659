@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1541442722101.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2517794502",
+    "id" : "6550D659",
+    "lastKnownWriteTime" : 1541458069,
+    "last_content_update" : 1541458070016,
+    "path" : "C:/flpoly/Fall 2018/Scientific Computing and Programming/Final_Project/writeup/gossq.final_report.Rmd",
+    "project_path" : "writeup/gossq.final_report.Rmd",
+    "properties" : {
+        "chunk_output_type" : "inline",
+        "cursorPosition" : "266,24",
+        "scrollLine" : "260"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

@@ -1,0 +1,77 @@
+{
+	"cluster_1": {
+		"id": "cluster_1",
+		"size": 28,
+		"nodes": ["gneJ110","gneJ111","gneJ113","gneJ115","gneJ376","gneJ377","gneJ406","gneJ407","gneJ416","gneJ418","gneJ419","gneJ420","gneJ421","gneJ422","gneJ423","gneJ424","gneJ425","gneJ426","gneJ427","gneJ428","gneJ429","gneJ62","gneJ74","gneJ75","gneJ76","gneJ77","gneJ78","gneJ79"]
+	},
+	"cluster_2": {
+		"id": "cluster_2",
+		"size": 16,
+		"nodes": ["gneJ103","gneJ104","gneJ273","gneJ288","gneJ289","gneJ290","gneJ291","gneJ292","gneJ301","gneJ302","gneJ303","gneJ304","gneJ353","gneJ354","gneJ435","gneJ436"]
+	},
+	"cluster_3": {
+		"id": "cluster_3",
+		"size": 32,
+		"nodes": ["gneJ198","gneJ199","gneJ200","gneJ201","gneJ202","gneJ203","gneJ207","gneJ208","gneJ209","gneJ241","gneJ255","gneJ501","gneJ502","gneJ503","gneJ504","gneJ505","gneJ506","gneJ512","gneJ513","gneJ519","gneJ520","gneJ521","gneJ522","gneJ523","gneJ524","gneJ525","gneJ526","gneJ527","gneJ528","gneJ558","gneJ574","gneJ575"]
+	},
+	"cluster_4": {
+		"id": "cluster_4",
+		"size": 33,
+		"nodes": ["gneJ161","gneJ170","gneJ171","gneJ172","gneJ174","gneJ175","gneJ183","gneJ191","gneJ366","gneJ438","gneJ439","gneJ440","gneJ441","gneJ444","gneJ445","gneJ447","gneJ449","gneJ450","gneJ451","gneJ452","gneJ454","gneJ455","gneJ467","gneJ468","gneJ469","gneJ470","gneJ477","gneJ478","gneJ479","gneJ480","gneJ481","gneJ92","gneJ93"]
+	},
+	"cluster_5": {
+		"id": "cluster_5",
+		"size": 16,
+		"nodes": ["gneJ233","gneJ234","gneJ235","gneJ236","gneJ237","gneJ245","gneJ246","gneJ247","gneJ249","gneJ250","gneJ251","gneJ252","gneJ560","gneJ563","gneJ568","gneJ569"]
+	},
+	"cluster_6": {
+		"id": "cluster_6",
+		"size": 36,
+		"nodes": ["gneJ10","gneJ11","gneJ12","gneJ14","gneJ15","gneJ16","gneJ19","gneJ2","gneJ20","gneJ24","gneJ25","gneJ26","gneJ3","gneJ33","gneJ34","gneJ394","gneJ395","gneJ396","gneJ408","gneJ409","gneJ410","gneJ411","gneJ45","gneJ5","gneJ53","gneJ54","gneJ56","gneJ57","gneJ581","gneJ6","gneJ66","gneJ67","gneJ68","gneJ69","gneJ8","gneJ9"]
+	},
+	"cluster_7": {
+		"id": "cluster_7",
+		"size": 35,
+		"nodes": ["gneJ114","gneJ116","gneJ117","gneJ118","gneJ119","gneJ120","gneJ121","gneJ122","gneJ123","gneJ124","gneJ125","gneJ148","gneJ149","gneJ150","gneJ153","gneJ154","gneJ155","gneJ156","gneJ157","gneJ158","gneJ18","gneJ21","gneJ22","gneJ23","gneJ27","gneJ28","gneJ30","gneJ31","gneJ32","gneJ412","gneJ430","gneJ431","gneJ432","gneJ433","gneJ471"]
+	},
+	"cluster_8": {
+		"id": "cluster_8",
+		"size": 21,
+		"nodes": ["gneJ101","gneJ109","gneJ176","gneJ180","gneJ182","gneJ343","gneJ344","gneJ345","gneJ346","gneJ347","gneJ348","gneJ349","gneJ350","gneJ351","gneJ352","gneJ355","gneJ356","gneJ357","gneJ358","gneJ370","gneJ97"]
+	},
+	"cluster_9": {
+		"id": "cluster_9",
+		"size": 37,
+		"nodes": ["gneJ35","gneJ37","gneJ38","gneJ39","gneJ392","gneJ393","gneJ397","gneJ398","gneJ399","gneJ40","gneJ400","gneJ401","gneJ402","gneJ403","gneJ404","gneJ405","gneJ41","gneJ42","gneJ43","gneJ44","gneJ46","gneJ47","gneJ474","gneJ475","gneJ48","gneJ487","gneJ49","gneJ50","gneJ51","gneJ52","gneJ58","gneJ580","gneJ71","gneJ72","gneJ80","gneJ84","gneJ87"]
+	},
+	"cluster_10": {
+		"id": "cluster_10",
+		"size": 35,
+		"nodes": ["gneJ192","gneJ193","gneJ194","gneJ195","gneJ210","gneJ211","gneJ214","gneJ215","gneJ216","gneJ239","gneJ240","gneJ269","gneJ270","gneJ271","gneJ272","gneJ459","gneJ488","gneJ489","gneJ490","gneJ493","gneJ494","gneJ495","gneJ496","gneJ497","gneJ529","gneJ530","gneJ532","gneJ533","gneJ534","gneJ536","gneJ537","gneJ538","gneJ539","gneJ540","gneJ543"]
+	},
+	"cluster_11": {
+		"id": "cluster_11",
+		"size": 26,
+		"nodes": ["gneJ160","gneJ359","gneJ360","gneJ361","gneJ362","gneJ363","gneJ364","gneJ365","gneJ367","gneJ368","gneJ369","gneJ384","gneJ385","gneJ386","gneJ388","gneJ391","gneJ482","gneJ483","gneJ484","gneJ73","gneJ81","gneJ82","gneJ85","gneJ86","gneJ90","gneJ91"]
+	},
+	"cluster_12": {
+		"id": "cluster_12",
+		"size": 22,
+		"nodes": ["gneJ221","gneJ222","gneJ223","gneJ224","gneJ225","gneJ226","gneJ227","gneJ231","gneJ232","gneJ238","gneJ550","gneJ551","gneJ552","gneJ553","gneJ554","gneJ562","gneJ564","gneJ565","gneJ566","gneJ567","gneJ577","gneJ578"]
+	},
+	"cluster_13": {
+		"id": "cluster_13",
+		"size": 20,
+		"nodes": ["gneJ204","gneJ217","gneJ218","gneJ219","gneJ220","gneJ242","gneJ253","gneJ254","gneJ541","gneJ542","gneJ544","gneJ545","gneJ546","gneJ547","gneJ549","gneJ555","gneJ559","gneJ571","gneJ572","gneJ573"]
+	},
+	"cluster_14": {
+		"id": "cluster_14",
+		"size": 22,
+		"nodes": ["gneJ100","gneJ106","gneJ107","gneJ371","gneJ372","gneJ373","gneJ374","gneJ378","gneJ379","gneJ380","gneJ381","gneJ382","gneJ383","gneJ387","gneJ389","gneJ390","gneJ413","gneJ414","gneJ415","gneJ88","gneJ89","gneJ99"]
+	},
+	"cluster_15": {
+		"id": "cluster_15",
+		"size": 33,
+		"nodes": ["gneJ162","gneJ163","gneJ164","gneJ165","gneJ167","gneJ168","gneJ169","gneJ196","gneJ197","gneJ446","gneJ456","gneJ457","gneJ458","gneJ460","gneJ461","gneJ462","gneJ463","gneJ464","gneJ465","gneJ466","gneJ476","gneJ485","gneJ486","gneJ507","gneJ508","gneJ509","gneJ510","gneJ511","gneJ514","gneJ515","gneJ516","gneJ517","gneJ518"]
+	}
+}

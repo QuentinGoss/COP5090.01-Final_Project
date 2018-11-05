@@ -1,0 +1,14 @@
+"0","```r
+summary(coords.clusters)
+```"
+"1","             Length Class  Mode   
+cluster      412    -none- numeric
+centers       14    -none- numeric
+totss          1    -none- numeric
+withinss       7    -none- numeric
+tot.withinss   1    -none- numeric
+betweenss      1    -none- numeric
+size           7    -none- numeric
+iter           1    -none- numeric
+ifault         1    -none- numeric
+"

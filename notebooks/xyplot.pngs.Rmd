@@ -26,7 +26,7 @@ output: html_notebook
 # Introduction
 On this page we have some code as well as images used to create high-quality PNGs for every project within the `jsons` directory. We have adapted the process and code found on the
 <a
- href="./kmeansmethod.nb.html"
+ href="./xyplotmethod.nb.html"
  title="Previous: Plotting Junction XY Coordinates.">
  previous page
 </a>

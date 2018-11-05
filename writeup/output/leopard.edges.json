@@ -1,0 +1,370 @@
+{
+	"cluster_1_to_cluster_6": {
+		"id": "cluster_1_to_cluster_6",
+		"from": "cluster_1",
+		"to": "cluster_6",
+		"weight": 2,
+		"true_center_coords": [[-35.5821428571429,-29.1989285714286],[112.351944444444,51.6861111111111]],
+		"normal_center_coords": [[0.851857874692108,0.417287908964581],[0.963860440770568,0.73438310777884]]
+	},
+	"cluster_1_to_cluster_7": {
+		"id": "cluster_1_to_cluster_7",
+		"from": "cluster_1",
+		"to": "cluster_7",
+		"weight": 4,
+		"true_center_coords": [[-35.5821428571429,-29.1989285714286],[160.085428571429,-69.0245714285714]],
+		"normal_center_coords": [[0.851857874692108,0.417287908964581],[1,0.261158664431151]]
+	},
+	"cluster_1_to_cluster_9": {
+		"id": "cluster_1_to_cluster_9",
+		"from": "cluster_1",
+		"to": "cluster_9",
+		"weight": 3,
+		"true_center_coords": [[-35.5821428571429,-29.1989285714286],[-57.2916216216216,112.462162162162]],
+		"normal_center_coords": [[0.851857874692108,0.417287908964581],[0.835421383453341,0.972644646214342]]
+	},
+	"cluster_1_to_cluster_14": {
+		"id": "cluster_1_to_cluster_14",
+		"from": "cluster_1",
+		"to": "cluster_14",
+		"weight": 5,
+		"true_center_coords": [[-35.5821428571429,-29.1989285714286],[-193.590909090909,26.1059090909091]],
+		"normal_center_coords": [[0.851857874692108,0.417287908964581],[0.732227655559485,0.634100542830604]]
+	},
+	"cluster_2_to_cluster_8": {
+		"id": "cluster_2_to_cluster_8",
+		"from": "cluster_2",
+		"to": "cluster_8",
+		"weight": 5,
+		"true_center_coords": [[-282.085625,-135.64125],[-348.125238095238,-34.7990476190476]],
+		"normal_center_coords": [[0.665227307992557,0],[0.615227972042242,0.395333653026055]]
+	},
+	"cluster_3_to_cluster_10": {
+		"id": "cluster_3_to_cluster_10",
+		"from": "cluster_3",
+		"to": "cluster_10",
+		"weight": 3,
+		"true_center_coords": [[-782.5796875,117.7078125],[-736.790571428571,-46.8608571428571]],
+		"normal_center_coords": [[0.286297608086727,0.993209271555632],[0.320965064330326,0.348047505871729]]
+	},
+	"cluster_3_to_cluster_13": {
+		"id": "cluster_3_to_cluster_13",
+		"from": "cluster_3",
+		"to": "cluster_13",
+		"weight": 6,
+		"true_center_coords": [[-782.5796875,117.7078125],[-900.7425,40.3325]],
+		"normal_center_coords": [[0.286297608086727,0.993209271555632],[0.196835209957571,0.689873324675961]]
+	},
+	"cluster_3_to_cluster_15": {
+		"id": "cluster_3_to_cluster_15",
+		"from": "cluster_3",
+		"to": "cluster_15",
+		"weight": 6,
+		"true_center_coords": [[-782.5796875,117.7078125],[-625.340303030303,80.4624242424242]],
+		"normal_center_coords": [[0.286297608086727,0.993209271555632],[0.40534531960774,0.847195449459434]]
+	},
+	"cluster_4_to_cluster_8": {
+		"id": "cluster_4_to_cluster_8",
+		"from": "cluster_4",
+		"to": "cluster_8",
+		"weight": 6,
+		"true_center_coords": [[-472.266666666667,34.7533333333333],[-348.125238095238,-34.7990476190476]],
+		"normal_center_coords": [[0.521239096251228,0.668001208765181],[0.615227972042242,0.395333653026055]]
+	},
+	"cluster_4_to_cluster_10": {
+		"id": "cluster_4_to_cluster_10",
+		"from": "cluster_4",
+		"to": "cluster_10",
+		"weight": 1,
+		"true_center_coords": [[-472.266666666667,34.7533333333333],[-736.790571428571,-46.8608571428571]],
+		"normal_center_coords": [[0.521239096251228,0.668001208765181],[0.320965064330326,0.348047505871729]]
+	},
+	"cluster_4_to_cluster_11": {
+		"id": "cluster_4_to_cluster_11",
+		"from": "cluster_4",
+		"to": "cluster_11",
+		"weight": 5,
+		"true_center_coords": [[-472.266666666667,34.7533333333333],[-288.508076923077,119.44]],
+		"normal_center_coords": [[0.521239096251228,0.668001208765181],[0.660364797201291,1]]
+	},
+	"cluster_4_to_cluster_15": {
+		"id": "cluster_4_to_cluster_15",
+		"from": "cluster_4",
+		"to": "cluster_15",
+		"weight": 7,
+		"true_center_coords": [[-472.266666666667,34.7533333333333],[-625.340303030303,80.4624242424242]],
+		"normal_center_coords": [[0.521239096251228,0.668001208765181],[0.40534531960774,0.847195449459434]]
+	},
+	"cluster_5_to_cluster_12": {
+		"id": "cluster_5_to_cluster_12",
+		"from": "cluster_5",
+		"to": "cluster_12",
+		"weight": 5,
+		"true_center_coords": [[-1160.724375,19.7975],[-1013.67136363636,23.8231818181818]],
+		"normal_center_coords": [[0,0.609369563619435],[0.111335493547981,0.625151522576363]]
+	},
+	"cluster_6_to_cluster_1": {
+		"id": "cluster_6_to_cluster_1",
+		"from": "cluster_6",
+		"to": "cluster_1",
+		"weight": 2,
+		"true_center_coords": [[112.351944444444,51.6861111111111],[-35.5821428571429,-29.1989285714286]],
+		"normal_center_coords": [[0.963860440770568,0.73438310777884],[0.851857874692108,0.417287908964581]]
+	},
+	"cluster_6_to_cluster_7": {
+		"id": "cluster_6_to_cluster_7",
+		"from": "cluster_6",
+		"to": "cluster_7",
+		"weight": 6,
+		"true_center_coords": [[112.351944444444,51.6861111111111],[160.085428571429,-69.0245714285714]],
+		"normal_center_coords": [[0.963860440770568,0.73438310777884],[1,0.261158664431151]]
+	},
+	"cluster_6_to_cluster_9": {
+		"id": "cluster_6_to_cluster_9",
+		"from": "cluster_6",
+		"to": "cluster_9",
+		"weight": 5,
+		"true_center_coords": [[112.351944444444,51.6861111111111],[-57.2916216216216,112.462162162162]],
+		"normal_center_coords": [[0.963860440770568,0.73438310777884],[0.835421383453341,0.972644646214342]]
+	},
+	"cluster_7_to_cluster_1": {
+		"id": "cluster_7_to_cluster_1",
+		"from": "cluster_7",
+		"to": "cluster_1",
+		"weight": 4,
+		"true_center_coords": [[160.085428571429,-69.0245714285714],[-35.5821428571429,-29.1989285714286]],
+		"normal_center_coords": [[1,0.261158664431151],[0.851857874692108,0.417287908964581]]
+	},
+	"cluster_7_to_cluster_6": {
+		"id": "cluster_7_to_cluster_6",
+		"from": "cluster_7",
+		"to": "cluster_6",
+		"weight": 6,
+		"true_center_coords": [[160.085428571429,-69.0245714285714],[112.351944444444,51.6861111111111]],
+		"normal_center_coords": [[1,0.261158664431151],[0.963860440770568,0.73438310777884]]
+	},
+	"cluster_8_to_cluster_2": {
+		"id": "cluster_8_to_cluster_2",
+		"from": "cluster_8",
+		"to": "cluster_2",
+		"weight": 5,
+		"true_center_coords": [[-348.125238095238,-34.7990476190476],[-282.085625,-135.64125]],
+		"normal_center_coords": [[0.615227972042242,0.395333653026055],[0.665227307992557,0]]
+	},
+	"cluster_8_to_cluster_4": {
+		"id": "cluster_8_to_cluster_4",
+		"from": "cluster_8",
+		"to": "cluster_4",
+		"weight": 6,
+		"true_center_coords": [[-348.125238095238,-34.7990476190476],[-472.266666666667,34.7533333333333]],
+		"normal_center_coords": [[0.615227972042242,0.395333653026055],[0.521239096251228,0.668001208765181]]
+	},
+	"cluster_8_to_cluster_11": {
+		"id": "cluster_8_to_cluster_11",
+		"from": "cluster_8",
+		"to": "cluster_11",
+		"weight": 3,
+		"true_center_coords": [[-348.125238095238,-34.7990476190476],[-288.508076923077,119.44]],
+		"normal_center_coords": [[0.615227972042242,0.395333653026055],[0.660364797201291,1]]
+	},
+	"cluster_8_to_cluster_14": {
+		"id": "cluster_8_to_cluster_14",
+		"from": "cluster_8",
+		"to": "cluster_14",
+		"weight": 4,
+		"true_center_coords": [[-348.125238095238,-34.7990476190476],[-193.590909090909,26.1059090909091]],
+		"normal_center_coords": [[0.615227972042242,0.395333653026055],[0.732227655559485,0.634100542830604]]
+	},
+	"cluster_9_to_cluster_1": {
+		"id": "cluster_9_to_cluster_1",
+		"from": "cluster_9",
+		"to": "cluster_1",
+		"weight": 3,
+		"true_center_coords": [[-57.2916216216216,112.462162162162],[-35.5821428571429,-29.1989285714286]],
+		"normal_center_coords": [[0.835421383453341,0.972644646214342],[0.851857874692108,0.417287908964581]]
+	},
+	"cluster_9_to_cluster_6": {
+		"id": "cluster_9_to_cluster_6",
+		"from": "cluster_9",
+		"to": "cluster_6",
+		"weight": 5,
+		"true_center_coords": [[-57.2916216216216,112.462162162162],[112.351944444444,51.6861111111111]],
+		"normal_center_coords": [[0.835421383453341,0.972644646214342],[0.963860440770568,0.73438310777884]]
+	},
+	"cluster_9_to_cluster_11": {
+		"id": "cluster_9_to_cluster_11",
+		"from": "cluster_9",
+		"to": "cluster_11",
+		"weight": 3,
+		"true_center_coords": [[-57.2916216216216,112.462162162162],[-288.508076923077,119.44]],
+		"normal_center_coords": [[0.835421383453341,0.972644646214342],[0.660364797201291,1]]
+	},
+	"cluster_9_to_cluster_14": {
+		"id": "cluster_9_to_cluster_14",
+		"from": "cluster_9",
+		"to": "cluster_14",
+		"weight": 3,
+		"true_center_coords": [[-57.2916216216216,112.462162162162],[-193.590909090909,26.1059090909091]],
+		"normal_center_coords": [[0.835421383453341,0.972644646214342],[0.732227655559485,0.634100542830604]]
+	},
+	"cluster_10_to_cluster_3": {
+		"id": "cluster_10_to_cluster_3",
+		"from": "cluster_10",
+		"to": "cluster_3",
+		"weight": 3,
+		"true_center_coords": [[-736.790571428571,-46.8608571428571],[-782.5796875,117.7078125]],
+		"normal_center_coords": [[0.320965064330326,0.348047505871729],[0.286297608086727,0.993209271555632]]
+	},
+	"cluster_10_to_cluster_4": {
+		"id": "cluster_10_to_cluster_4",
+		"from": "cluster_10",
+		"to": "cluster_4",
+		"weight": 1,
+		"true_center_coords": [[-736.790571428571,-46.8608571428571],[-472.266666666667,34.7533333333333]],
+		"normal_center_coords": [[0.320965064330326,0.348047505871729],[0.521239096251228,0.668001208765181]]
+	},
+	"cluster_10_to_cluster_13": {
+		"id": "cluster_10_to_cluster_13",
+		"from": "cluster_10",
+		"to": "cluster_13",
+		"weight": 3,
+		"true_center_coords": [[-736.790571428571,-46.8608571428571],[-900.7425,40.3325]],
+		"normal_center_coords": [[0.320965064330326,0.348047505871729],[0.196835209957571,0.689873324675961]]
+	},
+	"cluster_10_to_cluster_15": {
+		"id": "cluster_10_to_cluster_15",
+		"from": "cluster_10",
+		"to": "cluster_15",
+		"weight": 4,
+		"true_center_coords": [[-736.790571428571,-46.8608571428571],[-625.340303030303,80.4624242424242]],
+		"normal_center_coords": [[0.320965064330326,0.348047505871729],[0.40534531960774,0.847195449459434]]
+	},
+	"cluster_11_to_cluster_4": {
+		"id": "cluster_11_to_cluster_4",
+		"from": "cluster_11",
+		"to": "cluster_4",
+		"weight": 5,
+		"true_center_coords": [[-288.508076923077,119.44],[-472.266666666667,34.7533333333333]],
+		"normal_center_coords": [[0.660364797201291,1],[0.521239096251228,0.668001208765181]]
+	},
+	"cluster_11_to_cluster_8": {
+		"id": "cluster_11_to_cluster_8",
+		"from": "cluster_11",
+		"to": "cluster_8",
+		"weight": 3,
+		"true_center_coords": [[-288.508076923077,119.44],[-348.125238095238,-34.7990476190476]],
+		"normal_center_coords": [[0.660364797201291,1],[0.615227972042242,0.395333653026055]]
+	},
+	"cluster_11_to_cluster_9": {
+		"id": "cluster_11_to_cluster_9",
+		"from": "cluster_11",
+		"to": "cluster_9",
+		"weight": 3,
+		"true_center_coords": [[-288.508076923077,119.44],[-57.2916216216216,112.462162162162]],
+		"normal_center_coords": [[0.660364797201291,1],[0.835421383453341,0.972644646214342]]
+	},
+	"cluster_11_to_cluster_14": {
+		"id": "cluster_11_to_cluster_14",
+		"from": "cluster_11",
+		"to": "cluster_14",
+		"weight": 5,
+		"true_center_coords": [[-288.508076923077,119.44],[-193.590909090909,26.1059090909091]],
+		"normal_center_coords": [[0.660364797201291,1],[0.732227655559485,0.634100542830604]]
+	},
+	"cluster_12_to_cluster_5": {
+		"id": "cluster_12_to_cluster_5",
+		"from": "cluster_12",
+		"to": "cluster_5",
+		"weight": 5,
+		"true_center_coords": [[-1013.67136363636,23.8231818181818],[-1160.724375,19.7975]],
+		"normal_center_coords": [[0.111335493547981,0.625151522576363],[0,0.609369563619435]]
+	},
+	"cluster_12_to_cluster_13": {
+		"id": "cluster_12_to_cluster_13",
+		"from": "cluster_12",
+		"to": "cluster_13",
+		"weight": 8,
+		"true_center_coords": [[-1013.67136363636,23.8231818181818],[-900.7425,40.3325]],
+		"normal_center_coords": [[0.111335493547981,0.625151522576363],[0.196835209957571,0.689873324675961]]
+	},
+	"cluster_13_to_cluster_3": {
+		"id": "cluster_13_to_cluster_3",
+		"from": "cluster_13",
+		"to": "cluster_3",
+		"weight": 6,
+		"true_center_coords": [[-900.7425,40.3325],[-782.5796875,117.7078125]],
+		"normal_center_coords": [[0.196835209957571,0.689873324675961],[0.286297608086727,0.993209271555632]]
+	},
+	"cluster_13_to_cluster_10": {
+		"id": "cluster_13_to_cluster_10",
+		"from": "cluster_13",
+		"to": "cluster_10",
+		"weight": 3,
+		"true_center_coords": [[-900.7425,40.3325],[-736.790571428571,-46.8608571428571]],
+		"normal_center_coords": [[0.196835209957571,0.689873324675961],[0.320965064330326,0.348047505871729]]
+	},
+	"cluster_13_to_cluster_12": {
+		"id": "cluster_13_to_cluster_12",
+		"from": "cluster_13",
+		"to": "cluster_12",
+		"weight": 8,
+		"true_center_coords": [[-900.7425,40.3325],[-1013.67136363636,23.8231818181818]],
+		"normal_center_coords": [[0.196835209957571,0.689873324675961],[0.111335493547981,0.625151522576363]]
+	},
+	"cluster_14_to_cluster_1": {
+		"id": "cluster_14_to_cluster_1",
+		"from": "cluster_14",
+		"to": "cluster_1",
+		"weight": 5,
+		"true_center_coords": [[-193.590909090909,26.1059090909091],[-35.5821428571429,-29.1989285714286]],
+		"normal_center_coords": [[0.732227655559485,0.634100542830604],[0.851857874692108,0.417287908964581]]
+	},
+	"cluster_14_to_cluster_8": {
+		"id": "cluster_14_to_cluster_8",
+		"from": "cluster_14",
+		"to": "cluster_8",
+		"weight": 4,
+		"true_center_coords": [[-193.590909090909,26.1059090909091],[-348.125238095238,-34.7990476190476]],
+		"normal_center_coords": [[0.732227655559485,0.634100542830604],[0.615227972042242,0.395333653026055]]
+	},
+	"cluster_14_to_cluster_9": {
+		"id": "cluster_14_to_cluster_9",
+		"from": "cluster_14",
+		"to": "cluster_9",
+		"weight": 3,
+		"true_center_coords": [[-193.590909090909,26.1059090909091],[-57.2916216216216,112.462162162162]],
+		"normal_center_coords": [[0.732227655559485,0.634100542830604],[0.835421383453341,0.972644646214342]]
+	},
+	"cluster_14_to_cluster_11": {
+		"id": "cluster_14_to_cluster_11",
+		"from": "cluster_14",
+		"to": "cluster_11",
+		"weight": 5,
+		"true_center_coords": [[-193.590909090909,26.1059090909091],[-288.508076923077,119.44]],
+		"normal_center_coords": [[0.732227655559485,0.634100542830604],[0.660364797201291,1]]
+	},
+	"cluster_15_to_cluster_3": {
+		"id": "cluster_15_to_cluster_3",
+		"from": "cluster_15",
+		"to": "cluster_3",
+		"weight": 6,
+		"true_center_coords": [[-625.340303030303,80.4624242424242],[-782.5796875,117.7078125]],
+		"normal_center_coords": [[0.40534531960774,0.847195449459434],[0.286297608086727,0.993209271555632]]
+	},
+	"cluster_15_to_cluster_4": {
+		"id": "cluster_15_to_cluster_4",
+		"from": "cluster_15",
+		"to": "cluster_4",
+		"weight": 7,
+		"true_center_coords": [[-625.340303030303,80.4624242424242],[-472.266666666667,34.7533333333333]],
+		"normal_center_coords": [[0.40534531960774,0.847195449459434],[0.521239096251228,0.668001208765181]]
+	},
+	"cluster_15_to_cluster_10": {
+		"id": "cluster_15_to_cluster_10",
+		"from": "cluster_15",
+		"to": "cluster_10",
+		"weight": 4,
+		"true_center_coords": [[-625.340303030303,80.4624242424242],[-736.790571428571,-46.8608571428571]],
+		"normal_center_coords": [[0.40534531960774,0.847195449459434],[0.320965064330326,0.348047505871729]]
+	}
+}
