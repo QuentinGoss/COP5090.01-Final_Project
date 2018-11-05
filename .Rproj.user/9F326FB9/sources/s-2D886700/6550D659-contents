@@ -9,7 +9,7 @@ output:
   pdf_document: default
 ---
 # Introduction
-The end goal of this project is to create an R script which will simplify a graph consisting of nodes and edges. The nodes are placed into clusters using the base K-means clustering method in R `kmeans`. A new simpler graph is created from the centers of each cluster. This document records the most important data wrangling and data combination steps involved in the automation of graph simplification.
+The end goal of this project is to create an R script which will simplify a graph consisting of nodes and edges. The nodes are placed into clusters using the base K-means clustering method in R `kmeans`. A new simpler graph is created from the centers of each cluster. This document records the most important data wrangling and data combination steps involved in the automation of graph simplification. The full R project may be find at [COP5090.01-Final_Project GitHub repository](https://github.com/QuentinGoss/COP5090.01-Final_Project).
 
 # Background
 The graphs that this script simplifies are derived from road map networks (RMN) used with the vehicular traffic simulation software SUMO (**S**imulation of **U**rban **Mo**bility). The SUMO RMN data we input into the script is not raw SUMO RMN data but cleaned node and edge data stored in JSON (**J**ava**s**cript **O**bject **N**otation) format. Figure 1 is the SUMO RMN of the project `leopard` that we use to demonstrate process of the script. The project `leopard` consists of many roads, which we refer to as edges and intersections where roads connect which we refer to as junctions.

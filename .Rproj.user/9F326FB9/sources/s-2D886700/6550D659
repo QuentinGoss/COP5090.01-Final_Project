@@ -5,16 +5,16 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "2517794502",
+    "hash" : "3583811328",
     "id" : "6550D659",
-    "lastKnownWriteTime" : 1541458069,
-    "last_content_update" : 1541458070016,
+    "lastKnownWriteTime" : 1541460068,
+    "last_content_update" : 1541460068757,
     "path" : "C:/flpoly/Fall 2018/Scientific Computing and Programming/Final_Project/writeup/gossq.final_report.Rmd",
     "project_path" : "writeup/gossq.final_report.Rmd",
     "properties" : {
         "chunk_output_type" : "inline",
-        "cursorPosition" : "266,24",
-        "scrollLine" : "260"
+        "cursorPosition" : "11,463",
+        "scrollLine" : "0"
     },
     "relative_order" : 3,
     "source_on_save" : false,
